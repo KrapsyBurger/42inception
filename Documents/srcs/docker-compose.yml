@@ -9,14 +9,14 @@ services:
       dockerfile: Dockerfile
     env_file: .env
     volumes:
-    - mariadb:/var/lib/mysql
+      - /home/nfascia/data:/var/lib/docker/volumes/srcs_mariadb/_data:rw
     restart: unless-stopped
     expose:
     - "3306"
   nginx:
     container_name: nginx
     volumes:
-    - wordpress:/var/www/wordpress
+      - wordpress:/var/www/wordpress
     networks:
     - inception
     depends_on:
@@ -32,7 +32,7 @@ services:
     container_name: wordpress
     env_file: .env
     volumes:
-    - wordpress:/var/www/wordpress
+      - /home/nfascia/data:/var/lib/docker/volumes/srcs_wordpress/_data:rw 
     networks:
     - inception
     build:
@@ -49,13 +49,13 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/Desktop/wordpress'
+      device: '/home/nfascia/data'
   mariadb:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/Desktop/mariadb'
+      device: '/home/nfascia/data'
 networks:
   inception:
     driver: bridge

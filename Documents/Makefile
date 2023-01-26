@@ -5,7 +5,7 @@ up:
 down:
 	docker-compose -f srcs/docker-compose.yml down
 run:
-	build up
+	cd srcs && docker-compose up
 stop:
 	down
 clean:

@@ -17,5 +17,3 @@ RUN	chmod +x wp-cli.phar
 RUN	mv wp-cli.phar /usr/local/bin/wp
 ADD	conf/auto_config.sh ./auto_config.sh
 ENTRYPOINT	sh ./auto_config.sh
-RUN	mkdir /run/php
-CMD	/usr/sbin/php-fpm7.3 -F

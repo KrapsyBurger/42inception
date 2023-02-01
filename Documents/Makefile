@@ -11,8 +11,12 @@ run:
 	cd srcs && docker-compose up
 
 stop:
-	down
-clean:
-	docker image prune -a
-fclean:
+	docker-compose -f srcs/docker-compose.yml stop
+
+clean:	stop
+	docker-compose -f srcs/docker-compose.yml down -v
+	
+fclean: stop
+	rm -rf /home/nfascia/data/mariadb
+	rm -rf /home/nfascia/data/wordpress
 	docker system prune --volumes -a

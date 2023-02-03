@@ -15,5 +15,5 @@ COPY	conf/php.ini /etc/php/7.3/cli/php.ini
 RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN	chmod +x wp-cli.phar
 RUN	mv wp-cli.phar /usr/local/bin/wp
-ADD	conf/auto_config.sh ./auto_config.sh
+ADD	tools/auto_config.sh ./auto_config.sh
 ENTRYPOINT	sh ./auto_config.sh
